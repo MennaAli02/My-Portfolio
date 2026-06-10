@@ -17,12 +17,12 @@ body {
   padding: 0;
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), "Arial", sans-serif;
+  font-family: var(--font-inter), "Inter", "Arial", sans-serif;
   overflow-x: hidden;
 }
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Poppins", "Arial", sans-serif;
+  font-family: var(--font-poppins), "Poppins", "Arial", sans-serif;
 }
 
 /* Glassmorphism Header */
@@ -565,21 +565,7 @@ section {
   transition: transform 0.3s ease;
 }
 
-.certificate-item:hover .certificate-img {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 90vw;
-  max-height: 90vh;
-  width: auto;
-  height: auto;
-  z-index: 1000;
-  cursor: default;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
+
 
 /* Contacts Container */
 .contacts-container {
@@ -620,8 +606,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3.0.9rem;
-  height: 3.0.9rem;
+  width: 3rem;
+  height: 3rem;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
   border-radius: 50%;

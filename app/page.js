@@ -305,9 +305,7 @@ export default function Portfolio() {
 
         <section id="contacts">
           <h2 className="section-title">Contacts</h2>
-          <p className="section-content">
-           Feel free to reach out to me through any of the channels below.
-          </p>
+          <p className="section-content"> Feel free to reach out to me through any of the channels below.</p>
 
           <div className="contacts-line">
             <a href="tel:+2001090574321" className="contact-link">
