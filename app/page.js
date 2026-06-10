@@ -1,8 +1,9 @@
+'use client';
 import { PhoneIcon, EnvelopeIcon, LinkIcon, FolderOpenIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
-
-
+import { useState } from 'react'; 
 
 export default function Portfolio() {
+const [lightboxSrc, setLightboxSrc] = useState(null);
   return (
     <>
       <header className="header">
@@ -239,68 +240,68 @@ export default function Portfolio() {
           </p>
 
           <div className="certificates-grid">
-            <div className="certificate-item">
-                <img src="/UC-e4eff9aa-8c7d-4a72-b9b3-7ae52edb6912_page-0001.jpg" alt="Certificate" className="certificate-img" />
-                <span className="certificate-name">Python Basics and OOP Concepts</span>
-            </div>
-            <div className="certificate-item">
-              <span className="certificate-name">C# Programming: Basics and OOP Concepts</span>
-            </div>
-            <div className="certificate-item">
-              <span className="certificate-name">JavaScript Basics </span>
-            </div>
-            <div className="certificate-item">
-              <img src="\certificate (database in python)_page-0001.jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">Introduction to Databases in Python</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\certificate (SQL)_page-0001.jpg" alt="Course" className="certificate-img" />              
-              <span className="certificate-name">Introduction to SQL Server (Beginner Level)</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\certificate (intermediate sql)_page-0001.jpg" alt="Course" className="certificate-img" />              
-              <span className="certificate-name">SQL Server  (Intermediate Level)</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\excel.jfif" alt="Course" className="certificate-img" />
-              <span className="certificate-name">Data Analysis in Excel</span>
-            </div>
-            <div className="certificate-item">
-              <img src="/Backend Development Certification.jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">Backend Development with .NET</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\CertificateOfCompletion_Learning ASP.NET Core MVC Razor Pages Web APIs  Other Foundations (1)_page-0001.jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">ASP.NET Core Foundations</span>
-            </div>
-            <div className="certificate-item">
-              <span className="certificate-name">.NET Core MVC and Entity Framework Fundamentals</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">ASP.NET Core: Razor Pages</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">HTML Essential Fundamentals</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">CSS Essential Fundamentals</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\next.jpg" alt="Course" className="certificate-img" />
-              <span className="certificate-name">Introduction to Next.js</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\bitbucket.jfif" alt="Course" className="certificate-img" />
-              <span className="certificate-name">Learning Bitbucket</span>
-            </div>
-            <div className="certificate-item">
-              <img src="\git.jfif" alt="Course" className="certificate-img" />
-              <span className="certificate-name">Git and Version Control</span>
-            </div>
+          <div className="certificate-item">
+            <img src="/UC-e4eff9aa-8c7d-4a72-b9b3-7ae52edb6912_page-0001.jpg" alt="Certificate" className="certificate-img" onClick={() => setLightboxSrc('/UC-e4eff9aa-8c7d-4a72-b9b3-7ae52edb6912_page-0001.jpg')} />
+            <span className="certificate-name">Python Basics and OOP Concepts</span>
           </div>
+          <div className="certificate-item">
+            <span className="certificate-name">C# Programming: Basics and OOP Concepts</span>
+          </div>
+          <div className="certificate-item">
+            <span className="certificate-name">JavaScript Basics</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/certificate (database in python)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/certificate (database in python)_page-0001.jpg')} />
+            <span className="certificate-name">Introduction to Databases in Python</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/certificate (SQL)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/certificate (SQL)_page-0001.jpg')} />
+            <span className="certificate-name">Introduction to SQL Server (Beginner Level)</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/certificate (intermediate sql)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/certificate (intermediate sql)_page-0001.jpg')} />
+            <span className="certificate-name">SQL Server (Intermediate Level)</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/excel.jfif" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/excel.jfif')} />
+            <span className="certificate-name">Data Analysis in Excel</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/Backend Development Certification.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/Backend Development Certification.jpg')} />
+            <span className="certificate-name">Backend Development with .NET</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/CertificateOfCompletion_Learning ASP.NET Core MVC Razor Pages Web APIs  Other Foundations (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_Learning ASP.NET Core MVC Razor Pages Web APIs  Other Foundations (1)_page-0001.jpg')} />
+            <span className="certificate-name">ASP.NET Core Foundations</span>
+          </div>
+          <div className="certificate-item">
+            <span className="certificate-name">.NET Core MVC and Entity Framework Fundamentals</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg')} />
+            <span className="certificate-name">ASP.NET Core: Razor Pages</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg')} />
+            <span className="certificate-name">HTML Essential Fundamentals</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg')} />
+            <span className="certificate-name">CSS Essential Fundamentals</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/next.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/next.jpg')} />
+            <span className="certificate-name">Introduction to Next.js</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/bitbucket.jfif" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/bitbucket.jfif')} />
+            <span className="certificate-name">Learning Bitbucket</span>
+          </div>
+          <div className="certificate-item">
+            <img src="/git.jfif" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/git.jfif')} />
+            <span className="certificate-name">Git and Version Control</span>
+          </div>
+        </div>
         </section>
 
         <section id="contacts">
@@ -325,6 +326,23 @@ export default function Portfolio() {
         <footer className="footer">
           © 2026 Menna Ali. All rights reserved.
         </footer>
+        {lightboxSrc && (
+        <div
+          onClick={() => setLightboxSrc(null)}
+          style={{
+            position: 'fixed', inset: 0,
+            background: 'rgba(0,0,0,0.85)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            zIndex: 9999, cursor: 'zoom-out',
+          }}
+        >
+          <img
+            src={lightboxSrc}
+            alt="Certificate preview"
+            style={{ maxWidth: '90vw', maxHeight: '90vh', borderRadius: '12px', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}
+          />
+        </div>
+      )}
       </main>
     </>
   );
