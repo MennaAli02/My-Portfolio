@@ -1,9 +1,72 @@
 'use client';
 import { PhoneIcon, EnvelopeIcon, LinkIcon, FolderOpenIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
-import { useState } from 'react'; 
+import { useState, useEffect } from 'react';
+import {
+  SiPython, SiJavascript, SiR, SiDotnet,
+  SiFastapi, SiNodedotjs, SiReact, SiNextdotjs, SiHtml5, SiCss,
+  SiPostgresql, SiFirebase, SiSupabase,
+  SiGithub, SiBitbucket, SiPostman, SiVscodium,
+  SiPycharm, SiJupyter, SiSwagger, SiRstudioide
+} from 'react-icons/si';
+import { FaJava, FaDatabase, FaChartBar } from 'react-icons/fa';
+import { TbApi } from 'react-icons/tb';
+import { DiMsqlServer, DiVisualstudio } from 'react-icons/di';
 
 export default function Portfolio() {
 const [lightboxSrc, setLightboxSrc] = useState(null);
+const [mounted, setMounted] = useState(false);
+useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+const skills = {
+  "Programming Languages": [
+    { name: "Python", icon: <SiPython /> },
+    { name: "C#", icon: <SiDotnet /> },
+    { name: "JavaScript", icon: <SiJavascript /> },
+    { name: "SQL", icon: <FaDatabase /> },
+    { name: "Java", icon: <FaJava /> },
+    { name: "R", icon: <SiR /> },
+  ],
+  "Backend Technologies": [
+    { name: ".NET Core", icon: <SiDotnet /> },
+    { name: "ASP.NET Core", icon: <SiDotnet /> },
+    { name: "FastAPI", icon: <SiFastapi /> },
+    { name: "Node.js", icon: <SiNodedotjs /> },
+    { name: "REST APIs", icon: <TbApi /> },
+    { name: "Entity Framework", icon: <SiDotnet /> },
+  ],
+  "Frontend Technologies": [
+    { name: "React", icon: <SiReact /> },
+    { name: "Next.js", icon: <SiNextdotjs /> },
+    { name: "HTML5", icon: <SiHtml5 /> },
+    { name: "CSS", icon: <SiCss /> },
+  ],
+  "Data Analytics & Visualization": [
+    { name: "Power BI", icon: <FaChartBar /> },
+    { name: "RStudio", icon: <SiRstudioide /> },
+    { name: "Jupyter Notebook", icon: <SiJupyter /> },
+    { name: "Google Colab", icon: <SiJupyter /> },
+  ],
+  "Databases": [
+    { name: "SQL Server", icon: <DiMsqlServer /> },
+    { name: "PostgreSQL", icon: <SiPostgresql /> },
+    { name: "Oracle", icon: <FaDatabase /> },
+    { name: "Firebase", icon: <SiFirebase /> },
+    { name: "Supabase", icon: <SiSupabase /> },
+  ],
+  "Tools & Platforms": [
+    { name: "GitHub", icon: <SiGithub /> },
+    { name: "Bitbucket", icon: <SiBitbucket /> },
+    { name: "Postman", icon: <SiPostman /> },
+    { name: "Swagger UI", icon: <SiSwagger /> },
+    { name: "Visual Studio", icon: <DiVisualstudio /> },
+    { name: "VS Code", icon: <DiVisualstudio /> },
+    { name: "PyCharm", icon: <SiPycharm /> },
+    { name: "Jupyter", icon: <SiJupyter /> },
+  ],
+};
   return (
     <>
       <header className="header">
@@ -192,54 +255,19 @@ const [lightboxSrc, setLightboxSrc] = useState(null);
           </p>
 
           <div className="skills-grid">
-            <div className="skill-category">
-              <h3 className="category-title">Programming Languages</h3>
-              <div className="skill-tags">
-                <span>Python</span><span>C#</span><span>JavaScript</span><span>SQL</span><span>Java</span><span>R</span>
+            {Object.entries(skills).map(([category, items], categoryIndex) => (
+              <div className="skill-category" key={category} style={{ '--category-index': categoryIndex }}>
+                <h3 className="category-title">{category}</h3>
+                <div className="skill-tags">
+                  {items.map(({ name, icon }) => (
+                    <span className="skill-tag" key={name}>
+                      <span className="skill-icon">{icon}</span>
+                      <span className="skill-name">{name}</span>
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Backend Technologies</h3>
-              <div className="skill-tags">
-                <span>.NET Core</span><span>ASP.NET Core</span><span>FastAPI</span><span>Node.js</span><span>REST APIs</span><span>Entity Framework</span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Frontend Technologies</h3>
-              <div className="skill-tags">
-                <span>React</span><span>Next.js</span><span>HTML5</span><span>CSS</span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Data Analytics & Visualization</h3>
-              <div className="skill-tags">
-                <span>Power BI</span><span>RStudio</span><span>Jupyter Notebook</span><span>Google Colab</span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Databases</h3>
-              <div className="skill-tags">
-                <span>SQL Server</span><span>PostgreSQL</span><span>Oracle</span><span>Firebase</span><span>Supabase</span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Tools & Platforms</h3>
-              <div className="skill-tags">
-                <span>GitHub</span><span>Bitbucket</span><span>Postman</span><span>Swagger UI</span><span>Visual Studio</span><span>VS Code</span><span>PyCharm</span><span>NetBeans</span><span>Cursor AI</span><span>Antigravity</span>
-              </div>
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Languages</h3>
-              <div className="skill-tags">
-                <span>English (Fluent)</span><span>Arabic (Native)</span>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
