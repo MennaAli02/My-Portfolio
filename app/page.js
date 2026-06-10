@@ -24,15 +24,20 @@ const [lightboxSrc, setLightboxSrc] = useState(null);
           <div className="hero-subtitle">(Specialized in Health Informatics)</div>
           
           <div className="hero-buttons">
-            <a href="#projects" className="btn btn-primary">
+            {/* View Projects → GitHub */}
+            <a href="https://github.com/MennaAli02/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               <FolderOpenIcon className="icon" aria-hidden="true" />
               View Projects
             </a>
-            <a href="/Resume.pdf" download className="btn btn-secondary">
+
+            {/* Download Resume → your PDF in /public folder */}
+            <a href="\Menna ALI.pdf" download="Menna ALI.pdf" className="btn btn-secondary">
               <ArrowDownTrayIcon className="icon" aria-hidden="true" />
               Download Resume
             </a>
-            <a href="#contacts" className="btn btn-outline">
+
+            {/* Contact Me → phone number */}
+            <a href="tel:+201090574321" className="btn btn-outline">
               Contact Me
             </a>
           </div>

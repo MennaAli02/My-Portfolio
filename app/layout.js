@@ -1,16 +1,16 @@
-import { Inter, Poppins } from "next/font/google";
+import { Playfair_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600"],
 });
 
 export const metadata = {
@@ -20,8 +20,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-        <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-          <body suppressHydrationWarning>{children}</body>
-        </html>
+    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+      <body suppressHydrationWarning>{children}</body>
+    </html>
   );
 }
