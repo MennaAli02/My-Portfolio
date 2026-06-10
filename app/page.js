@@ -64,8 +64,13 @@ const [lightboxSrc, setLightboxSrc] = useState(null);
 
             <div className="about-image-content">
               <div className="profile-image-container">
+                <div className="image-glow-ring"></div>
                 <img src="/profile.jpg" alt="Menna Ali" className="profile-image" />
                 <div className="image-accent-border"></div>
+                <div className="image-badge">
+                  <span className="badge-dot"></span>
+                  Available for work
+                </div>
               </div>
             </div>
           </div>
