@@ -163,17 +163,19 @@ section {
 }
 
 .hero-name {
-  font-family: var(--font-playfair), serif;
-  font-style: italic;  
-  font-size: 5rem;
+  font-size: 6rem;
   font-weight: 600;
   margin-bottom: 1rem;
+  margin-top: 0;
   background: linear-gradient(135deg, #ffffff, #94a3b8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-align: center;
-  letter-spacing: -1px;
+  letter-spacing: 4px;
+  line-height: 1.15;
+  font-style: italic;
+  padding: 0 2rem;
 }
 
 .hero-title {
