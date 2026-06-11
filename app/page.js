@@ -1,14 +1,15 @@
 'use client';
-import { PhoneIcon, EnvelopeIcon, LinkIcon, FolderOpenIcon, ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
+import { PhoneIcon, EnvelopeIcon, LinkIcon, FolderOpenIcon, ArrowDownTrayIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 import {
   SiPython, SiJavascript, SiR, SiDotnet,
   SiFastapi, SiNodedotjs, SiReact, SiNextdotjs, SiHtml5, SiCss,
   SiPostgresql, SiFirebase, SiSupabase,
   SiGithub, SiBitbucket, SiPostman, SiVscodium,
-  SiPycharm, SiJupyter, SiSwagger, SiRstudioide
+  SiPycharm, SiJupyter, SiSwagger, SiRstudioide,
+  SiGooglecolab, SiDocker, SiFigma
 } from 'react-icons/si';
-import { FaJava, FaDatabase, FaChartBar } from 'react-icons/fa';
+import { FaJava, FaDatabase, FaChartBar, FaCube, FaCode } from 'react-icons/fa';
 import { TbApi } from 'react-icons/tb';
 import { DiMsqlServer, DiVisualstudio } from 'react-icons/di';
 
@@ -23,7 +24,7 @@ useEffect(() => {
 const skills = {
   "Programming Languages": [
     { name: "Python", icon: <SiPython /> },
-    { name: "C#", icon: <SiDotnet /> },
+    { name: "C#", icon: <FaCode /> },
     { name: "JavaScript", icon: <SiJavascript /> },
     { name: "SQL", icon: <FaDatabase /> },
     { name: "Java", icon: <FaJava /> },
@@ -47,7 +48,7 @@ const skills = {
     { name: "Power BI", icon: <FaChartBar /> },
     { name: "RStudio", icon: <SiRstudioide /> },
     { name: "Jupyter Notebook", icon: <SiJupyter /> },
-    { name: "Google Colab", icon: <SiJupyter /> },
+    { name: "Google Colab", icon: <SiGooglecolab /> },  
   ],
   "Databases": [
     { name: "SQL Server", icon: <DiMsqlServer /> },
@@ -65,6 +66,10 @@ const skills = {
     { name: "VS Code", icon: <DiVisualstudio /> },
     { name: "PyCharm", icon: <SiPycharm /> },
     { name: "Jupyter", icon: <SiJupyter /> },
+    { name: "NetBeans", icon: <FaCube /> },
+    { name: "Cursor AI", icon: <FaCode /> },
+    { name: "Docker", icon: <SiDocker /> },           
+    { name: "Figma", icon: <SiFigma /> },            
   ],
 };
   return (
@@ -101,6 +106,7 @@ const skills = {
 
             {/* Contact Me → phone number */}
             <a href="tel:+201090574321" className="btn btn-outline">
+              <ChatBubbleLeftRightIcon className="icon" aria-hidden="true" />
               Contact Me
             </a>
           </div>
@@ -283,9 +289,11 @@ const skills = {
             <span className="certificate-name">Python Basics and OOP Concepts</span>
           </div>
           <div className="certificate-item">
+            <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><FaCode /></span>
             <span className="certificate-name">C# Programming: Basics and OOP Concepts</span>
           </div>
           <div className="certificate-item">
+            <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiJavascript /></span>
             <span className="certificate-name">JavaScript Basics</span>
           </div>
           <div className="certificate-item">
@@ -313,11 +321,16 @@ const skills = {
             <span className="certificate-name">ASP.NET Core Foundations</span>
           </div>
           <div className="certificate-item">
+            <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiDotnet /></span>
             <span className="certificate-name">.NET Core MVC and Entity Framework Fundamentals</span>
           </div>
           <div className="certificate-item">
             <img src="/CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg')} />
             <span className="certificate-name">ASP.NET Core: Razor Pages</span>
+          </div>
+          <div className="certificate-item">
+            <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiNodedotjs /></span>
+            <span className="certificate-name">Introduction to Node.js</span>
           </div>
           <div className="certificate-item">
             <img src="/CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg')} />
@@ -326,6 +339,10 @@ const skills = {
           <div className="certificate-item">
             <img src="/CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg')} />
             <span className="certificate-name">CSS Essential Fundamentals</span>
+          </div>
+          <div className="certificate-item">
+            <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiReact /></span>
+            <span className="certificate-name">React Basics</span>
           </div>
           <div className="certificate-item">
             <img src="/next.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/next.jpg')} />
