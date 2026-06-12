@@ -31,14 +31,14 @@ export const metadata = {
     "Python Developer",
     "Portfolio",
   ],
-  authors: [{ name: "Menna Ali", url: "https://menna-ali.vercel.app" }],
+  authors: [{ name: "Menna Ali", url: "https://my-portfolio-steel-eight-18.vercel.app/" }],
   creator: "Menna Ali",
-  metadataBase: new URL("https://menna-ali.vercel.app"), // 🔁 replace with your actual Vercel URL after deploying
+  metadataBase: new URL("https://my-portfolio-steel-eight-18.vercel.app/"), // 🔁 replace with your actual Vercel URL after deploying
   openGraph: {
     title: "Menna Ali | Backend Developer & Health Informatics Specialist",
     description:
       "Backend-focused full stack developer building scalable APIs and clinical applications with .NET, FastAPI, and React.",
-    url: "https://menna-ali.vercel.app",
+    url: "https://my-portfolio-steel-eight-18.vercel.app",
     siteName: "Menna Ali Portfolio",
     images: [
       {
@@ -68,7 +68,7 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: "https://menna-ali.vercel.app",
+    canonical: "https://my-portfolio-steel-eight-18.vercel.app",
   },
 };
 
