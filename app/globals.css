@@ -1089,3 +1089,251 @@ section {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 3rem;
 }
+
+/* ═══════════════════════════════════════════════
+   MOBILE RESPONSIVE STYLES
+   Add these to the bottom of globals.css
+═══════════════════════════════════════════════ */
+
+/* ── Tablet: 768px and below ── */
+@media (max-width: 768px) {
+
+  /* Header & Nav */
+  .header {
+    padding: 1rem 1.25rem;
+  }
+
+  .nav {
+    gap: 1.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav a {
+    font-size: 0.9rem;
+  }
+
+  /* Sections */
+  section {
+    padding: 5rem 1.25rem 2rem;
+    min-height: auto;
+  }
+
+  /* Section titles */
+  .section-title {
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+
+  .section-content {
+    font-size: 1.1rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Hero */
+  .hero-name {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    text-align: center;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 260px;
+    justify-content: center;
+  }
+
+  /* About */
+  .about-container {
+    flex-direction: column;
+    gap: 2.5rem;
+    padding: 0 1rem;
+    align-items: center;
+  }
+
+  .about-text-content {
+    max-width: 100%;
+  }
+
+  .about-chips {
+    gap: 0.5rem;
+  }
+
+  .profile-image-container {
+    width: 240px;
+    height: 285px;
+  }
+
+  .image-badge {
+    bottom: -12px;
+    right: -8px;
+    font-size: 0.72rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .education-card {
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .card-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .timeline-dot {
+    left: -2rem;
+  }
+
+  .timeline-content {
+    padding: 1.25rem;
+  }
+
+  .timeline-desc {
+    font-size: 0.95rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-subtitle {
+    font-size: 1rem;
+  }
+
+  /* Skills */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  /* Certificates */
+  .certificates-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+    margin-top: 2rem;
+    gap: 1rem;
+  }
+
+  .certificate-name {
+    font-size: 0.95rem;
+  }
+
+  /* Contacts */
+  .contacts-line {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  /* Glow orbs — shrink on mobile so they don't cause overflow */
+  .glow-orb-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .glow-orb-2 {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* ── Small phones: 480px and below ── */
+@media (max-width: 480px) {
+
+  .hero-name {
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-title {
+    font-size: 0.95rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-content {
+    font-size: 1rem;
+  }
+
+  .profile-image-container {
+    width: 200px;
+    height: 240px;
+  }
+
+  .image-accent-border {
+    top: 10px;
+    left: -10px;
+  }
+
+  .project-tabs {
+    max-width: 100%;
+  }
+
+  .project-card-body {
+    padding: 1.1rem;
+  }
+
+  .project-title-new {
+    font-size: 1rem;
+  }
+
+  .timeline-content {
+    padding: 1rem;
+  }
+
+  .nav {
+    gap: 0.85rem;
+  }
+
+  .nav a {
+    font-size: 0.82rem;
+  }
+
+  .certificate-item {
+    padding: 1rem 1.1rem;
+  }
+
+  .education-card {
+    padding: 1rem;
+  }
+}
+
+/* ── Reduced motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
