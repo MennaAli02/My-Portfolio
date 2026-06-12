@@ -82,7 +82,7 @@ export default function Portfolio() {
   const personalProjects = [
     {
       title: "My Portfolio",
-      description: "A modern, dark-themed developer portfolio built with Next.js featuring glassmorphism UI, smooth scroll navigation, skill grids, certificate showcase, and a responsive layout with animated interactions.",
+      description: "A modern developer portfolio built with Next.js featuring glassmorphism UI, smooth scroll navigation, skill grids, certificate showcase, and a responsive layout with animated interactions.",
       tech: [
         { name: "Next.js", icon: <SiNextdotjs /> },
         { name: "React", icon: <SiReact /> },
@@ -95,7 +95,7 @@ export default function Portfolio() {
     },
     {
       title: "Data Analytics Dashboards",
-      description: "Interactive Power BI dashboards analyzing hotel reservation datasets — uncovering booking trends, guest preferences, seasonal patterns, and business insights through rich visual storytelling.",
+      description: "Interactive Power BI dashboards analyzing datasets — uncovering trends, patterns, and business insights through rich visual storytelling.",
       tech: [
         { name: "Power BI", icon: <FaChartBar /> },
         { name: "SQL", icon: <FaDatabase /> },
@@ -163,17 +163,14 @@ export default function Portfolio() {
     },
     {
       title: "Medical Analytics System",
-      description: "A data analytics platform for healthcare institutions providing dashboards on patient outcomes, resource utilization, and clinical performance metrics. Includes predictive models for hospital readmission risk.",
+      description: "A data analytics platform for healthcare institutions providing dashboards on patient outcomes, resource utilization, and clinical performance metrics.",
       tech: [
-        { name: "Python", icon: <SiPython /> },
-        { name: "Power BI", icon: <FaChartBar /> },
-        { name: "SQL Server", icon: <DiMsqlServer /> },
         { name: "React", icon: <SiReact /> },
       ],
       github: "https://github.com/Esraaaalaaa/Medical_analytics_system",
       visual: "medanalytics",
       accent: "#8b5cf6",
-      role: "Data & Backend",
+      role: "Frontend Developer",
     },
     {
       title: "SayCare – Healthcare Application",
@@ -181,13 +178,12 @@ export default function Portfolio() {
       tech: [
         { name: "React", icon: <SiReact /> },
         { name: "Node.js", icon: <SiNodedotjs /> },
-        { name: "PostgreSQL", icon: <SiPostgresql /> },
         { name: "REST APIs", icon: <TbApi /> },
       ],
       github: "https://github.com/maanaar/SayCare",
       visual: "saycare",
       accent: "#ec4899",
-      role: "Full Stack",
+      role: "Frontend Developer",
     },
   ];
 
@@ -421,8 +417,17 @@ export default function Portfolio() {
           <div className="about-container">
             <div className="about-text-content">
               <p className="section-content" style={{ textAlign: 'left', maxWidth: '100%' }}>
-                I'm Menna, a backend-focused full stack developer specializing in .NET, Python, healthcare systems, and data analytics. I build scalable APIs, modern web applications, and data-driven solutions using technologies like ASP.NET Core, FastAPI, React, and Next.js.
-              </p>
+              Healthcare systems need engineers who understand the domain and the data inside it.     
+              <br /><br />I'm Menna: a backend-focused full stack developer who builds scalable APIs and clinical 
+              web applications in .NET, FastAPI, and React, and a data analyst who knows what to do with 
+              the data once it's there. Specialized in Health Informatics</p>
+              <div className="about-chips">
+                <span className="about-chip"><SiDotnet /> .NET / ASP.NET Core</span>
+                <span className="about-chip"><SiFastapi /> FastAPI / Python</span>
+                <span className="about-chip"><SiReact /> React / Next.js</span>
+                <span className="about-chip"><FaHospital /> Health Informatics</span>
+                <span className="about-chip"><FaChartBar /> Data Analytics</span>
+              </div>  
               <div className="education-card" style={{ marginTop: '2rem' }}>
                 <h3 className="card-title">🎓 Education</h3>
                 <h4 className="card-subtitle">Faculty of Computer & Data Sciences<br />Alexandria University</h4>
@@ -651,7 +656,7 @@ export default function Portfolio() {
 
         <section id="contacts">
           <h2 className="section-title">Contacts</h2>
-          <p className="section-content">Feel free to reach out to me through any of the channels below.</p>
+          <p className="section-content">Feel free to reach out</p>
           <div className="contacts-line">
             <a href="tel:+2001090574321" className="contact-link">
               <PhoneIcon className="contact-icon" aria-hidden="true" />
