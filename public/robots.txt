@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-portfolio-steel-eight-18.vercel.app/sitemap.xml
