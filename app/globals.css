@@ -1337,3 +1337,63 @@ section {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Fix horizontal overflow / scrolling on mobile ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent any section from exceeding viewport */
+section {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+/* Education card full width on mobile */
+@media (max-width: 768px) {
+  .education-card {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Timeline content must not overflow */
+  .timeline {
+    padding-left: 1.5rem;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .timeline-content {
+    max-width: 100%;
+    box-sizing: border-box;
+    /* Remove the hover slide effect that causes overflow */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Disable translateX hover on mobile — it causes overflow */
+  .timeline-content:hover {
+    transform: none;
+  }
+
+  /* About container must not overflow */
+  .about-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  /* Image accent border offset can push layout on small screens */
+  .image-accent-border {
+    display: none;
+  }
+
+  /* Card details row wraps instead of overflowing */
+  .card-details {
+    flex-wrap: wrap;
+  }
+}
