@@ -1,18 +1,19 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   PhoneIcon, EnvelopeIcon, LinkIcon, FolderOpenIcon,
-  ArrowDownTrayIcon, ChatBubbleLeftRightIcon, ArrowTopRightOnSquareIcon
+  ArrowDownTrayIcon, ChatBubbleLeftRightIcon, ArrowTopRightOnSquareIcon,
+  ChevronLeftIcon, ChevronRightIcon
 } from '@heroicons/react/24/outline';
 import {
   SiPython, SiJavascript, SiR, SiDotnet,
   SiFastapi, SiNodedotjs, SiReact, SiNextdotjs, SiHtml5, SiCss,
-  SiPostgresql, SiFirebase, SiSupabase,
+  SiPostgresql, SiFirebase, SiSupabase, SiVercel, SiOdoo, SiVite, SiTailwindcss,
   SiGithub, SiBitbucket, SiPostman, SiVscodium,
   SiPycharm, SiJupyter, SiSwagger, SiRstudioide,
   SiGooglecolab, SiDocker, SiFigma, SiFlutter, SiOracle
 } from 'react-icons/si';
-import { FaJava, FaDatabase, FaChartBar, FaCube, FaCode, FaHospital, FaMobile, FaBrain, FaNetworkWired, FaUserShield } from 'react-icons/fa';
+import { FaJava, FaDatabase, FaChartBar, FaCube, FaCode, FaHospital, FaMobile, FaBrain, FaNetworkWired, FaUserShield, FaLaptopMedical } from 'react-icons/fa';
 import { TbApi } from 'react-icons/tb';
 import { DiMsqlServer, DiVisualstudio } from 'react-icons/di';
 
@@ -21,9 +22,46 @@ export default function Portfolio() {
   const [mounted, setMounted] = useState(false);
   const [activeProjectTab, setActiveProjectTab] = useState('personal');
 
+  const personalScrollRef = useRef(null);
+  const teamScrollRef = useRef(null);
+
+  const scrollContainer = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = direction === 'left' ? -380 : 380;
+      ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+        }
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -40px 0px',
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const revealElements = document.querySelectorAll('.reveal-text, .reveal-image, .reveal-card, .reveal-stagger');
+
+    revealElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [mounted, activeProjectTab]);
 
   if (!mounted) return null;
 
@@ -80,6 +118,61 @@ export default function Portfolio() {
   };
 
   const personalProjects = [
+    {
+      title: "AI Meeting Assistant",
+      description: "An AI-powered meeting platform featuring real-time meeting transcription, intelligent summaries, action item extraction, and secure user authentication integrated with Supabase — deployed live on Vercel.",
+      tech: [
+        { name: "Next.js", icon: <SiNextdotjs /> },
+        { name: "Supabase", icon: <SiSupabase /> },
+        { name: "Vercel", icon: <SiVercel /> },
+        { name: "React", icon: <SiReact /> },
+        { name: "AI Models", icon: <FaBrain /> },
+      ],
+      github: "https://github.com/MennaAli02/ai-meeting-assistant",
+      live: "https://ai-meeting-assistant-blond.vercel.app/login",
+      visual: "meeting",
+      accent: "#38bdf8",
+    },
+    {
+      title: "NEXUS – Radiology Information System",
+      description: "A Radiology Information System built with React and integrated with Odoo ERP backend, connecting medical imaging workflows directly to DICOM (DCM) standards and Picture Archiving & Communication Systems (PACS).",
+      tech: [
+        { name: "React", icon: <SiReact /> },
+        { name: "Odoo ERP", icon: <SiOdoo /> },
+        { name: "DICOM / PACS", icon: <FaLaptopMedical /> },
+        { name: "REST APIs", icon: <TbApi /> },
+      ],
+      github: "https://github.com/MennaAli02/RIS",
+      visual: "ris",
+      accent: "#14b8a6",
+    },
+    {
+      title: "IMEX AI – Medical Imaging Platform",
+      description: "An intelligent radiology platform built with React and Odoo ERP integration, connecting medical imaging pipelines to DICOM & PACS networks with AI-assisted diagnostic capabilities.",
+      tech: [
+        { name: "React", icon: <SiReact /> },
+        { name: "Odoo ERP", icon: <SiOdoo /> },
+        { name: "AI Models", icon: <FaBrain /> },
+        { name: "DICOM / PACS", icon: <FaLaptopMedical /> },
+      ],
+      github: "https://github.com/MennaAli02/imex-ai",
+      visual: "imex",
+      accent: "#a855f7",
+    },
+    {
+      title: "Sijil (سِجِلّ) – Foreigner Registration & Identity Platform",
+      description: "An enterprise-grade, bilingual (Arabic/English) identity resolution platform enforcing a 3-layer deduplication engine, MRZ OCR parsing, and ICAO 9303 check digit verification under a 'One Person, One Record' architecture.",
+      tech: [
+        { name: "React", icon: <SiReact /> },
+        { name: "Vite", icon: <SiVite /> },
+        { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+        { name: "Identity & OCR", icon: <FaUserShield /> },
+        { name: "JavaScript", icon: <SiJavascript /> },
+      ],
+      github: "https://github.com/MennaAli02/Sijil",
+      visual: "sijil",
+      accent: "#d4941b",
+    },
     {
       title: "My Portfolio",
       description: "A modern developer portfolio built with Next.js featuring glassmorphism UI, smooth scroll navigation, skill grids, certificate showcase, and a responsive layout with animated interactions.",
@@ -345,12 +438,101 @@ export default function Portfolio() {
           <rect x="122" y="138" width="50" height="6" rx="3" fill="#ec4899" opacity="0.6" />
         </svg>
       ),
+      meeting: (
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" className="project-svg">
+          <rect width="280" height="160" rx="10" fill="#0d0d14" />
+          <rect x="14" y="14" width="252" height="24" rx="6" fill="#16161f" />
+          <circle cx="26" cy="26" r="4" fill="#38bdf8" />
+          <rect x="36" y="23" width="70" height="6" rx="3" fill={accent} opacity="0.8" />
+          <rect x="220" y="21" width="36" height="10" rx="4" fill="#10b981" opacity="0.8" />
+          <rect x="14" y="46" width="160" height="100" rx="8" fill="#0f1520" style={{ stroke: accent, strokeWidth: 1 }} />
+          <rect x="22" y="54" width="72" height="42" rx="6" fill="#16161f" />
+          <circle cx="58" cy="71" r="10" fill={accent} opacity="0.4" />
+          <rect x="100" y="54" width="66" height="42" rx="6" fill="#16161f" />
+          <circle cx="133" cy="71" r="10" fill="#ec4899" opacity="0.4" />
+          <rect x="22" y="104" width="144" height="34" rx="6" fill="#16161f" />
+          <polyline points="28,121 34,115 40,127 46,112 52,125 58,118 64,124 70,116 76,126 82,120" fill="none" stroke={accent} strokeWidth="2" strokeLinecap="round" />
+          <rect x="90" y="116" width="70" height="4" rx="2" fill="#94a3b8" opacity="0.7" />
+          <rect x="90" y="124" width="50" height="4" rx="2" fill="#64748b" opacity="0.7" />
+          <rect x="182" y="46" width="84" height="100" rx="8" fill="#0f1520" style={{ stroke: '#38bdf8', strokeWidth: 1 }} />
+          <rect x="190" y="54" width="68" height="14" rx="4" fill="#38bdf8" opacity="0.2" />
+          <rect x="190" y="74" width="68" height="4" rx="2" fill="#334155" />
+          <rect x="190" y="82" width="55" height="4" rx="2" fill="#334155" />
+          <rect x="190" y="90" width="60" height="4" rx="2" fill="#334155" />
+          <rect x="190" y="102" width="68" height="16" rx="4" fill={accent} opacity="0.8" />
+          <rect x="190" y="124" width="68" height="14" rx="4" fill="#16161f" />
+        </svg>
+      ),
+      ris: (
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" className="project-svg">
+          <rect width="280" height="160" rx="10" fill="#0d0d14" />
+          <rect x="14" y="14" width="252" height="24" rx="6" fill="#16161f" />
+          <text x="24" y="30" fill={accent} fontSize="9" fontWeight="bold">NEXUS / PACS INTEGRATION</text>
+          <rect x="190" y="21" width="66" height="10" rx="4" fill="#14b8a6" opacity="0.7" />
+          <rect x="14" y="46" width="150" height="100" rx="8" fill="#0f1520" style={{ stroke: accent, strokeWidth: 1 }} />
+          <line x1="89" y1="56" x2="89" y2="136" stroke="#94a3b8" strokeWidth="2" opacity="0.6" />
+          <path d="M64 74 Q89 64 114 74" fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5" />
+          <path d="M59 88 Q89 78 119 88" fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5" />
+          <path d="M64 102 Q89 92 114 102" fill="none" stroke="#94a3b8" strokeWidth="2" opacity="0.5" />
+          <circle cx="89" cy="80" r="14" fill={accent} opacity="0.25" />
+          <rect x="174" y="46" width="92" height="100" rx="8" fill="#0f1520" style={{ stroke: '#714B67', strokeWidth: 1 }} />
+          <rect x="182" y="54" width="76" height="14" rx="4" fill="#714B67" opacity="0.8" />
+          <rect x="182" y="74" width="76" height="4" rx="2" fill="#334155" />
+          <rect x="182" y="82" width="60" height="4" rx="2" fill="#334155" />
+          <rect x="182" y="90" width="68" height="4" rx="2" fill="#334155" />
+          <rect x="182" y="102" width="76" height="16" rx="4" fill={accent} opacity="0.7" />
+          <rect x="182" y="124" width="76" height="14" rx="4" fill="#16161f" />
+        </svg>
+      ),
+      imex: (
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" className="project-svg">
+          <rect width="280" height="160" rx="10" fill="#0d0d14" />
+          <rect x="14" y="14" width="252" height="24" rx="6" fill="#16161f" />
+          <text x="24" y="30" fill={accent} fontSize="9" fontWeight="bold">IMEX AI RADIOLOGY</text>
+          <rect x="190" y="21" width="66" height="10" rx="4" fill="#a855f7" opacity="0.8" />
+          <rect x="14" y="46" width="150" height="100" rx="8" fill="#0f1520" style={{ stroke: accent, strokeWidth: 1 }} />
+          <ellipse cx="89" cy="94" rx="38" ry="42" fill="#16161f" style={{ stroke: accent, strokeWidth: 1.5 }} />
+          <rect x="65" y="70" width="30" height="28" fill="none" style={{ stroke: '#f43f5e', strokeWidth: 1.5, strokeDasharray: '3,2' }} />
+          <rect x="174" y="46" width="92" height="100" rx="8" fill="#0f1520" style={{ stroke: accent, strokeWidth: 1 }} />
+          <rect x="182" y="54" width="76" height="14" rx="4" fill={accent} opacity="0.3" />
+          <rect x="182" y="74" width="76" height="5" rx="2" fill="#334155" />
+          <rect x="182" y="83" width="55" height="5" rx="2" fill="#334155" />
+          <rect x="182" y="94" width="76" height="22" rx="4" fill={accent} opacity="0.8" />
+          <rect x="182" y="122" width="76" height="16" rx="4" fill="#16161f" style={{ stroke: accent, strokeWidth: 1 }} />
+        </svg>
+      ),
+      sijil: (
+        <svg viewBox="0 0 280 160" xmlns="http://www.w3.org/2000/svg" className="project-svg">
+          <rect width="280" height="160" rx="10" fill="#0d0d14" />
+          <rect x="14" y="14" width="252" height="24" rx="6" fill="#16161f" />
+          <text x="24" y="30" fill={accent} fontSize="9" fontWeight="bold">SIJIL (سِجِلّ) IDENTITY REGISTRY</text>
+          <rect x="200" y="21" width="56" height="10" rx="4" fill={accent} opacity="0.8" />
+          <rect x="14" y="46" width="150" height="100" rx="8" fill="#0f1520" style={{ stroke: accent, strokeWidth: 1 }} />
+          <rect x="24" y="56" width="40" height="50" rx="4" fill="#16161f" style={{ stroke: accent, strokeWidth: 1 }} />
+          <circle cx="44" cy="74" r="8" fill={accent} opacity="0.3" />
+          <rect x="30" y="90" width="28" height="4" rx="2" fill={accent} opacity="0.7" />
+          <rect x="72" y="56" width="82" height="16" rx="4" fill="#0b2e33" style={{ stroke: accent, strokeWidth: 1 }} />
+          <text x="76" y="67" fill={accent} fontSize="7" fontWeight="bold">FRN-2026-004812</text>
+          <rect x="72" y="78" width="82" height="4" rx="2" fill="#334155" />
+          <rect x="72" y="86" width="60" height="4" rx="2" fill="#334155" />
+          <rect x="24" y="112" width="130" height="24" rx="4" fill="#16161f" />
+          <text x="28" y="123" fill="#94a3b8" fontSize="6" fontFamily="monospace">P&lt;EGYALAM&lt;&lt;MENNA&lt;&lt;&lt;&lt;&lt;&lt;&lt;</text>
+          <text x="28" y="131" fill="#94a3b8" fontSize="6" fontFamily="monospace">A123456789EGY0209081F260</text>
+          <rect x="174" y="46" width="92" height="100" rx="8" fill="#0f1520" style={{ stroke: '#10b981', strokeWidth: 1 }} />
+          <rect x="182" y="54" width="76" height="14" rx="4" fill="#10b981" opacity="0.2" />
+          <text x="188" y="64" fill="#10b981" fontSize="7" fontWeight="bold">AUTO-MATCH 96%</text>
+          <rect x="182" y="74" width="76" height="4" rx="2" fill="#334155" />
+          <rect x="182" y="82" width="55" height="4" rx="2" fill="#334155" />
+          <rect x="182" y="94" width="76" height="22" rx="4" fill={accent} opacity="0.8" />
+          <rect x="182" y="122" width="76" height="16" rx="4" fill="#16161f" style={{ stroke: accent, strokeWidth: 1 }} />
+        </svg>
+      ),
     };
     return visuals[type] || null;
   };
 
   const ProjectCard = ({ project, isTeam = false }) => (
-    <div className="project-card-new" style={{ '--card-accent': project.accent }}>
+    <div className="project-card-new reveal-card" style={{ '--card-accent': project.accent }}>
       <div className="project-visual-wrap">
         <ProjectVisual type={project.visual} accent={project.accent} />
         {isTeam && project.role && (
@@ -368,11 +550,22 @@ export default function Portfolio() {
             </span>
           ))}
         </div>
-        <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-github-btn">
-          <SiGithub />
-          <span>View on GitHub</span>
-          <ArrowTopRightOnSquareIcon style={{ width: '0.85rem', height: '0.85rem' }} />
-        </a>
+        <div className="project-card-actions">
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-github-btn">
+              <SiGithub />
+              <span>GitHub</span>
+              <ArrowTopRightOnSquareIcon style={{ width: '0.85rem', height: '0.85rem' }} />
+            </a>
+          )}
+          {project.live && (
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="project-live-btn">
+              <SiVercel />
+              <span>Live Demo</span>
+              <ArrowTopRightOnSquareIcon style={{ width: '0.85rem', height: '0.85rem' }} />
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -392,10 +585,10 @@ export default function Portfolio() {
 
       <main>
         <section id="home">
-          <h1 className="hero-name">Menna Ali</h1>
-          <div className="hero-title">Backend-Focused Full Stack Developer | .NET | Data Analytics</div>
-          <div className="hero-subtitle">(Specialized in Health Informatics)</div>
-          <div className="hero-buttons">
+          <h1 className="hero-name reveal-text">Menna Ali</h1>
+          <div className="hero-title reveal-text">Backend-Focused Full Stack Developer | .NET | Data Analytics</div>
+          <div className="hero-subtitle reveal-text">(Specialized in Health Informatics)</div>
+          <div className="hero-buttons reveal-text">
             <a href="https://github.com/MennaAli02/" target="_blank" rel="noopener noreferrer" className="btn btn-primary">
               <FolderOpenIcon className="icon" aria-hidden="true" />
               View Projects
@@ -413,22 +606,22 @@ export default function Portfolio() {
 
         <section id="about">
           <div className="glow-orb-1"></div>
-          <h1 className="section-title">About Me</h1>
+          <h1 className="section-title reveal-text">About Me</h1>
           <div className="about-container">
             <div className="about-text-content">
-              <p className="section-content" style={{ textAlign: 'left', maxWidth: '100%' }}>
+              <p className="section-content reveal-text" style={{ textAlign: 'left', maxWidth: '100%' }}>
               Healthcare systems need engineers who understand the domain and the data inside it.     
               <br /><br />I'm Menna: a backend-focused full stack developer who builds scalable APIs and clinical 
               web applications in .NET, FastAPI, and React, and a data analyst who knows what to do with 
               the data once it's there. Specialized in Health Informatics</p>
-              <div className="about-chips">
+              <div className="about-chips reveal-stagger">
                 <span className="about-chip"><SiDotnet /> .NET / ASP.NET Core</span>
                 <span className="about-chip"><SiFastapi /> FastAPI / Python</span>
                 <span className="about-chip"><SiReact /> React / Next.js</span>
                 <span className="about-chip"><FaHospital /> Health Informatics</span>
                 <span className="about-chip"><FaChartBar /> Data Analytics</span>
               </div>  
-              <div className="education-card" style={{ marginTop: '2rem' }}>
+              <div className="education-card reveal-card" style={{ marginTop: '2rem' }}>
                 <h3 className="card-title">🎓 Education</h3>
                 <h4 className="card-subtitle">Faculty of Computer & Data Sciences<br />Alexandria University</h4>
                 <div className="card-details">
@@ -438,7 +631,7 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="about-image-content">
-              <div className="profile-image-container">
+              <div className="profile-image-container reveal-image">
                 <div className="image-glow-ring"></div>
                 <img src="/profile.jpg" alt="Menna Ali" className="profile-image" />
                 <div className="image-accent-border"></div>
@@ -453,10 +646,24 @@ export default function Portfolio() {
 
         <section id="experience">
           <div className="glow-orb-2"></div>
-          <h2 className="section-title">Experience</h2>
-          <p className="section-content">My professional journey in backend development, healthcare systems, and data analytics.</p>
+          <h2 className="section-title reveal-text">Experience</h2>
+          <p className="section-content reveal-text">My professional journey in full-stack development, AI-driven solutions, and enterprise backend systems.</p>
           <div className="timeline">
-            <div className="timeline-item">
+            <div className="timeline-item reveal-card">
+              <div className="timeline-dot"></div>
+              <div className="timeline-content">
+                <h3 className="card-title">Full Stack Developer</h3>
+                <h4 className="card-subtitle">DeValley</h4>
+                <div className="card-details" style={{ borderTop: 'none', paddingTop: 0 }}>
+                  <span className="years">Jul 2026 — Present</span>
+                  <span className="location">Riyadh, Saudi Arabia • Remote</span>
+                </div>
+                <p className="timeline-desc">
+                  Architecting and developing modern web applications utilizing Next.js, React, Node.js, and Supabase, with automated CI/CD deployments on Vercel. Professionally collaborating with AI agents and leveraging intelligent developer tools to accelerate software engineering velocity, optimize code quality, and deliver high-performance user experiences.
+                </p>
+              </div>
+            </div>
+            <div className="timeline-item reveal-card">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
                 <h3 className="card-title">Backend Developer (Python/Odoo)</h3>
@@ -470,7 +677,7 @@ export default function Portfolio() {
                 </p>
               </div>
             </div>
-            <div className="timeline-item">
+            <div className="timeline-item reveal-card">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
                 <h3 className="card-title">IT Support Engineer Intern</h3>
@@ -484,7 +691,7 @@ export default function Portfolio() {
                 </p>
               </div>
             </div>
-            <div className="timeline-item">
+            <div className="timeline-item reveal-card">
               <div className="timeline-dot"></div>
               <div className="timeline-content">
                 <h3 className="card-title">Data Analytics Intern</h3>
@@ -507,8 +714,8 @@ export default function Portfolio() {
           <div className="glow-orb-2" style={{ bottom: '10%', right: '-5%' }}></div>
 
           <div className="projects-header">
-            <h2 className="section-title">Projects</h2>
-            <p className="section-content">
+            <h2 className="section-title reveal-text">Projects</h2>
+            <p className="section-content reveal-text">
               A collection of healthcare, backend, and data-driven applications — built solo and with teams.
             </p>
 
@@ -535,30 +742,62 @@ export default function Portfolio() {
 
           {/* Personal Projects */}
           {activeProjectTab === 'personal' && (
-            <div className="projects-new-grid" key="personal">
-              {personalProjects.map((project) => (
-                <ProjectCard key={project.title} project={project} />
-              ))}
+            <div className="projects-scroll-container">
+              <div className="projects-scroll-controls">
+                <span className="scroll-hint">
+                  <ChevronLeftIcon className="scroll-hint-icon" /> Scroll horizontally to explore all {personalProjects.length} personal projects <ChevronRightIcon className="scroll-hint-icon" />
+                </span>
+                <div className="scroll-nav-btns">
+                  <button className="scroll-nav-btn" onClick={() => scrollContainer(personalScrollRef, 'left')} aria-label="Scroll Left">
+                    <ChevronLeftIcon className="scroll-btn-icon" />
+                  </button>
+                  <button className="scroll-nav-btn" onClick={() => scrollContainer(personalScrollRef, 'right')} aria-label="Scroll Right">
+                    <ChevronRightIcon className="scroll-btn-icon" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="projects-new-grid projects-horizontal-row" key="personal" ref={personalScrollRef}>
+                {personalProjects.map((project) => (
+                  <ProjectCard key={project.title} project={project} />
+                ))}
+              </div>
             </div>
           )}
 
           {/* Team Projects */}
           {activeProjectTab === 'team' && (
-            <div className="projects-new-grid projects-team-grid" key="team">
-              {teamProjects.map((project) => (
-                <ProjectCard key={project.title} project={project} isTeam />
-              ))}
+            <div className="projects-scroll-container">
+              <div className="projects-scroll-controls">
+                <span className="scroll-hint">
+                  <ChevronLeftIcon className="scroll-hint-icon" /> Scroll horizontally to explore team projects <ChevronRightIcon className="scroll-hint-icon" />
+                </span>
+                <div className="scroll-nav-btns">
+                  <button className="scroll-nav-btn" onClick={() => scrollContainer(teamScrollRef, 'left')} aria-label="Scroll Left">
+                    <ChevronLeftIcon className="scroll-btn-icon" />
+                  </button>
+                  <button className="scroll-nav-btn" onClick={() => scrollContainer(teamScrollRef, 'right')} aria-label="Scroll Right">
+                    <ChevronRightIcon className="scroll-btn-icon" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="projects-new-grid projects-horizontal-row" key="team" ref={teamScrollRef}>
+                {teamProjects.map((project) => (
+                  <ProjectCard key={project.title} project={project} isTeam />
+                ))}
+              </div>
             </div>
           )}
         </section>
 
         <section id="skills">
           <div className="glow-orb-1" style={{ top: 'auto', bottom: '-10%', left: '50%' }}></div>
-          <h2 className="section-title">Skills</h2>
-          <p className="section-content">A comprehensive overview of my technical expertise, tools, and languages.</p>
+          <h2 className="section-title reveal-text">Skills</h2>
+          <p className="section-content reveal-text">A comprehensive overview of my technical expertise, tools, and languages.</p>
           <div className="skills-grid">
             {Object.entries(skills).map(([category, items], categoryIndex) => (
-              <div className="skill-category" key={category} style={{ '--category-index': categoryIndex }}>
+              <div className="skill-category reveal-card" key={category} style={{ '--category-index': categoryIndex }}>
                 <h3 className="category-title">{category}</h3>
                 <div className="skill-tags">
                   {items.map(({ name, icon }) => (
@@ -574,80 +813,80 @@ export default function Portfolio() {
         </section>
 
         <section id="certificates">
-          <h2 className="section-title">Courses & Certificates</h2>
-          <p className="section-content">
+          <h2 className="section-title reveal-text">Courses & Certificates</h2>
+          <p className="section-content reveal-text">
             Continuous learning is a core part of my journey. Here are some of the key courses and certifications I've completed.
           </p>
           <div className="certificates-grid">
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/UC-e4eff9aa-8c7d-4a72-b9b3-7ae52edb6912_page-0001.jpg" alt="Certificate" className="certificate-img" onClick={() => setLightboxSrc('/UC-e4eff9aa-8c7d-4a72-b9b3-7ae52edb6912_page-0001.jpg')} />
               <span className="certificate-name">Python Basics and OOP Concepts</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><FaCode /></span>
               <span className="certificate-name">C# Programming: Basics and OOP Concepts</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiJavascript /></span>
               <span className="certificate-name">JavaScript Basics</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/certificate (database in python)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/certificate (database in python)_page-0001.jpg')} />
               <span className="certificate-name">Introduction to Databases in Python</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/certificate (SQL)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/certificate (SQL)_page-0001.jpg')} />
               <span className="certificate-name">Introduction to SQL Server (Beginner Level)</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/certificate (intermediate sql)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/certificate (intermediate sql)_page-0001.jpg')} />
               <span className="certificate-name">SQL Server (Intermediate Level)</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/excel.jfif" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/excel.jfif')} />
               <span className="certificate-name">Data Analysis in Excel</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/Backend Development Certification.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/Backend Development Certification.jpg')} />
               <span className="certificate-name">Backend Development with .NET</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/CertificateOfCompletion_Learning ASP.NET Core MVC Razor Pages Web APIs  Other Foundations (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_Learning ASP.NET Core MVC Razor Pages Web APIs  Other Foundations (1)_page-0001.jpg')} />
               <span className="certificate-name">ASP.NET Core Foundations</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiDotnet /></span>
               <span className="certificate-name">.NET Core MVC and Entity Framework Fundamentals</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_ASP.NET Core Razor Pages (1) (1)_page-0001.jpg')} />
               <span className="certificate-name">ASP.NET Core: Razor Pages</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiNodedotjs /></span>
               <span className="certificate-name">Introduction to Node.js</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_HTML Essential Training (1)_page-0001.jpg')} />
               <span className="certificate-name">HTML Essential Fundamentals</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/CertificateOfCompletion_CSS Essential Training (1)_page-0001 (1).jpg')} />
               <span className="certificate-name">CSS Essential Fundamentals</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <span className="skill-icon" style={{ fontSize: '2rem', color: 'var(--primary)' }}><SiReact /></span>
               <span className="certificate-name">React Basics</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/next.jpg" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/next.jpg')} />
               <span className="certificate-name">Introduction to Next.js</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/bitbucket.jfif" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/bitbucket.jfif')} />
               <span className="certificate-name">Learning Bitbucket</span>
             </div>
-            <div className="certificate-item">
+            <div className="certificate-item reveal-card">
               <img src="/git.jfif" alt="Course" className="certificate-img" onClick={() => setLightboxSrc('/git.jfif')} />
               <span className="certificate-name">Git and Version Control</span>
             </div>
@@ -655,18 +894,18 @@ export default function Portfolio() {
         </section>
 
         <section id="contacts">
-          <h2 className="section-title">Contacts</h2>
-          <p className="section-content">Feel free to reach out</p>
+          <h2 className="section-title reveal-text">Contacts</h2>
+          <p className="section-content reveal-text">Feel free to reach out</p>
           <div className="contacts-line">
-            <a href="tel:+2001090574321" className="contact-link">
+            <a href="tel:+2001090574321" className="contact-link reveal-card">
               <PhoneIcon className="contact-icon" aria-hidden="true" />
               <span className="contact-label">Phone:</span> +20 01090574321
             </a>
-            <a href="mailto:mennatullahali02@gmail.com" className="contact-link">
+            <a href="mailto:mennatullahali02@gmail.com" className="contact-link reveal-card">
               <EnvelopeIcon className="contact-icon" aria-hidden="true" />
               <span className="contact-label">Email:</span> mennatullahali02@gmail.com
             </a>
-            <a href="https://www.linkedin.com/in/menna-ali-047661276/" target="_blank" rel="noopener noreferrer" className="contact-link">
+            <a href="https://www.linkedin.com/in/menna-ali-047661276/" target="_blank" rel="noopener noreferrer" className="contact-link reveal-card">
               <LinkIcon className="contact-icon" aria-hidden="true" />
               <span className="contact-label">LinkedIn:</span> Menna Ali
             </a>
